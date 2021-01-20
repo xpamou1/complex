@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t xpamou1/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run xpamou1/react-test npm test -- --coverage
+
+after_success:
+  - docker build -f xpamou1/complex-client ./client
+  - docker build -f xpamou1/complex-nginx ./nginx
+  - docker build -f xpamou1/complex-worker ./worker
+  - docker build -f xpamou1/complex-server ./server
+  - docker login --username xpamou1 --password $DOCKER_PASSWORD
+
+  - docker push xpamou1/complex-nginx
+  - docker push xpamou1/complex-worker
+  - docker push xpamou1/complex-server
+  - docker push xpamou1/complex-client
