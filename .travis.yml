@@ -14,7 +14,7 @@ after_success:
   - docker build -f xpamou1/complex-nginx ./nginx
   - docker build -f xpamou1/complex-worker ./worker
   - docker build -f xpamou1/complex-server ./server
-  - docker login --username xpamou1 --password $DOCKER_PASSWORD
+  - echo "$DOCKER_PASSWORD" | docker login -u "xpamou1" --password-stdin
 
   - docker push xpamou1/complex-nginx
   - docker push xpamou1/complex-worker
