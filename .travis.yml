@@ -10,10 +10,10 @@ script:
   - docker run -e CI=true xpamou1/react-test npm test -- --coverage
 
 after_success:
-  - docker build -f xpamou1/complex-client ./client
-  - docker build -f xpamou1/complex-nginx ./nginx
-  - docker build -f xpamou1/complex-worker ./worker
-  - docker build -f xpamou1/complex-server ./server
+  - docker build -t xpamou1/complex-client ./client
+  - docker build -t xpamou1/complex-nginx ./nginx
+  - docker build -t xpamou1/complex-worker ./worker
+  - docker build -t xpamou1/complex-server ./server
   - echo "$DOCKER_PASSWORD" | docker login -u "xpamou1" --password-stdin
 
   - docker push xpamou1/complex-nginx
