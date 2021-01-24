@@ -23,14 +23,14 @@ after_success:
   - docker push xpamou1/complex-server
   - docker push xpamou1/complex-client
 
-  deploy:
-    provider: elasticbeanstalk
-    region: 'us-east-2'
-    app: 'complex'
-    env: 'Complex-env'
-    bucket_name: 'elasticbeanstalk-us-east-2-743788846417'
-    bucket_path: 'docker-complex'
-    on:
-      branch: main
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'complex'
+  env: 'Complex-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-743788846417'
+  bucket_path: 'docker-complex'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
