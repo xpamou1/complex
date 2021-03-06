@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-ports
+spec:
+  type: NodePort
+  ports: # Подсказывает какие порты должны мапиться и быть открытыми
+    - port: 3050 # Для других pod (Если используется muilti-client)
+      targetPort: 3000 # Порт в контейнере
+      nodePort: 31515 # Порт который смотрит в внешний интернет (Если не указывать то задается рандомно)
+  selector: # Ищет в pod config идентичный набор обьект-значение (component: web) можно и (test: test) но в pod тоже дожен быть test: test
+    component: web # Используется для обращения к конкретному сервису
