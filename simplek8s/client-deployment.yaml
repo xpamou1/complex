@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment # Тип создаваемого обьекта
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1 # Количестко pods которые deployment будет делать из template
+  selector: # Необходим для поиска созданных pod через deployment template
+    matchLabels:
+      app: web
+  template: # Шаблон для всех pod созданных через deployment
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: client
+        image: xpamou1/complex-client:latest
+        ports:
+        - containerPort: 3000

@@ -9,4 +9,4 @@ spec:
   - name: client # use for name network
     image: xpamou1/complex-client:latest # name from docker hub
     ports: 
-      - containerPort: 3000 # open 3000 port to outside world
+      - containerPort: 3000 # open 3000 port to outside world 
